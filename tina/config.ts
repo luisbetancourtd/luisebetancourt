@@ -66,6 +66,12 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "image",
+            name: "image",
+            label: "Imagen destacada",
+            required: false,
+          },
+          {
             type: "string",
             name: "status",
             label: "Estado",

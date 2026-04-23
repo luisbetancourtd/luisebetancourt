@@ -21,35 +21,45 @@ export default function BlogPage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="block p-6 bg-surface-container border border-white/5 hover:border-[#f2ca50]/30 transition-colors"
+                className="group block bg-surface-container border border-white/5 hover:border-[#f2ca50]/30 transition-colors overflow-hidden"
               >
-                <div className="flex flex-col md:flex-row md:items-center gap-4">
-                  <div className="w-24 shrink-0">
-                    <div className="font-mono text-xs text-primary">
-                      {new Date(post.date).toLocaleDateString("es-ES", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </div>
-                    <div className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-on-surface-variant mt-1">
+                {/* Image */}
+                {post.image && (
+                  <div className="relative w-full h-48 overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent opacity-60" />
+                    <div className="absolute top-3 left-3 font-mono text-[0.6rem] tracking-[0.15em] uppercase px-2 py-0.5 bg-[#131313]/80 border border-white/10 text-primary">
                       {post.sector}
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h2 className="font-[var(--font-epilogue)] text-lg uppercase tracking-[0.05em] text-white mb-1 group-hover:text-[#f2ca50] transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="font-[var(--font-poppins)] text-sm text-on-surface-variant">
-                      {post.description}
-                    </p>
+                )}
+
+                {/* Content */}
+                <div className="p-5">
+                  <div className="font-mono text-xs text-on-surface-variant mb-2">
+                    {new Date(post.date).toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
                   </div>
-                  <div className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-primary shrink-0">
+                  <h2 className="font-[var(--font-epilogue)] text-lg uppercase tracking-[0.05em] text-white mb-2 group-hover:text-[#f2ca50] transition-colors line-clamp-2">
+                    {post.title}
+                  </h2>
+                  <p className="font-[var(--font-poppins)] text-sm text-on-surface-variant line-clamp-3">
+                    {post.description}
+                  </p>
+                  <div className="mt-4 font-mono text-[0.6rem] tracking-[0.15em] uppercase text-primary">
                     LEER MAS -
                   </div>
                 </div>

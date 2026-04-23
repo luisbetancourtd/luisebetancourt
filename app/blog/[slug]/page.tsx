@@ -29,6 +29,16 @@ export default async function PostPage({
           {post.description}
         </p>
 
+        {post.image && (
+          <div className="mb-10 w-full h-64 md:h-80 overflow-hidden border border-white/10">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+          </div>
+        )}
+
         <div className="border-t border-white/10 pt-10">
           <MdxContent content={post.body} />
         </div>

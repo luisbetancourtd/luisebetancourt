@@ -11,6 +11,7 @@ export interface Post {
   date: string;
   sector: string;
   status: string;
+  image: string;
   body: string;
 }
 
@@ -44,6 +45,7 @@ export function getPosts(): Post[] {
         date: data.date ? new Date(data.date).toISOString() : "",
         sector: data.sector || "general",
         status: data.status || "draft",
+        image: data.image || "",
         body: data.body || "",
       } as Post;
     })
@@ -64,6 +66,7 @@ export function getPostBySlug(slug: string): Post | null {
     date: data.date ? new Date(data.date).toISOString() : "",
     sector: data.sector || "general",
     status: data.status || "draft",
+    image: data.image || "",
     body: data.body || "",
   };
 }
