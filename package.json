@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
+    "@tinacms/cli": "^2.2.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.9.0",
     "next": "16.2.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^3.5.0",
+    "tinacms": "^3.7.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
