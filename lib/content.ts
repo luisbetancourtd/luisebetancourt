@@ -22,6 +22,18 @@ export interface Page {
   body: string;
 }
 
+export interface Sector {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  sectorCode: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  status: string;
+  body: string;
+}
+
 function parseFrontmatter(filePath: string): Record<string, any> & { body: string } {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
@@ -99,6 +111,50 @@ export function getPageBySlug(slug: string): Page | null {
     slug,
     title: data.title || "",
     description: data.description || "",
+    body: data.body || "",
+  };
+}
+
+export function getSectors(): Sector[] {
+  const sectorsDir = path.join(CONTENT_DIR, "sectors");
+  if (!fs.existsSync(sectorsDir)) return [];
+
+  const files = fs
+    .readdirSync(sectorsDir)
+    .filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
+
+  return files.map((file) => {
+    const filePath = path.join(sectorsDir, file);
+    const data = parseFrontmatter(filePath);
+    return {
+      slug: file.replace(/\.mdx?$/, ""),
+      title: data.title || "",
+      description: data.description || "",
+      image: data.image || "",
+      sectorCode: data.sector_code || "",
+      ctaLabel: data.cta_label || "",
+      ctaUrl: data.cta_url || "",
+      status: data.status || "ACTIVO",
+      body: data.body || "",
+    } as Sector;
+  });
+}
+
+export function getSectorBySlug(slug: string): Sector | null {
+  const sectorsDir = path.join(CONTENT_DIR, "sectors");
+  const filePath = path.join(sectorsDir, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return null;
+
+  const data = parseFrontmatter(filePath);
+  return {
+    slug,
+    title: data.title || "",
+    description: data.description || "",
+    image: data.image || "",
+    sectorCode: data.sector_code || "",
+    ctaLabel: data.cta_label || "",
+    ctaUrl: data.cta_url || "",
+    status: data.status || "ACTIVO",
     body: data.body || "",
   };
 }

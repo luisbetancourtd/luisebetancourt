@@ -7,6 +7,8 @@ const NAV_LINKS = [
   { href: "/", label: "INICIO" },
   { href: "/mision", label: "MISION" },
   { href: "/blog", label: "ARCHIVO" },
+  { href: "/arsenal", label: "ARSENAL" },
+  { href: "/newsletter", label: "ENLISTARSE" },
   { href: "/sobre", label: "SOBRE" },
 ];
 

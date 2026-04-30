@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPosts } from "@/lib/content";
 import MdxContent from "@/components/content/MdxContent";
+import TerminalDonation from "@/components/layout/TerminalDonation";
 
 export function generateStaticParams() {
   const posts = getPosts();
@@ -41,6 +42,11 @@ export default async function PostPage({
 
         <div className="border-t border-white/10 pt-10">
           <MdxContent content={post.body} />
+        </div>
+
+        {/* DONACION */}
+        <div className="mt-16">
+          <TerminalDonation variant="full" />
         </div>
       </div>
     </article>
