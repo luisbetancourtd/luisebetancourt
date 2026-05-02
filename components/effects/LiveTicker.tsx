@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Radio } from "lucide-react";
 
 /**
  * LiveTicker — Cinta de noticias táctica en la parte inferior.
@@ -37,7 +36,7 @@ export default function LiveTicker() {
     <div className="fixed bottom-0 left-0 right-0 z-[100] bg-[#131313] border-t border-white/10 h-10 flex items-center overflow-hidden font-mono text-xs tracking-[0.15em] uppercase">
       {/* Label */}
       <div className="flex-shrink-0 px-4 py-2 bg-surface-container-highest border-r border-white/10 text-primary font-bold flex items-center gap-2">
-        <Radio size={12} className="text-[#FF0000] animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] animate-pulse" />
         LIVE
       </div>
 

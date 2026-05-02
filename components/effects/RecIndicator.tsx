@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Radio, X, Clock, MapPin } from "lucide-react";
+import { X, Clock, MapPin } from "lucide-react";
 
 /**
  * RecIndicator — Indicador REC pulsante fijo en la esquina superior derecha.
@@ -57,9 +57,8 @@ export default function RecIndicator() {
         className="fixed top-12 right-12 z-[101] flex items-center gap-2 font-mono text-xs tracking-[0.1em] text-[#FF0000] cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-none"
         aria-label="Abrir información del sistema"
       >
-        <Radio
-          size={14}
-          className="text-[#FF0000]"
+        <span
+          className="w-3 h-3 rounded-full bg-[#FF0000]"
           style={{ animation: "pulse-red 1.5s infinite" }}
         />
         <span>REC</span>
