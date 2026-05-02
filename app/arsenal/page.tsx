@@ -1,4 +1,5 @@
 import TerminalDonation from "@/components/layout/TerminalDonation";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
 export default function ArsenalPage() {
   const tools = [
@@ -79,6 +80,8 @@ export default function ArsenalPage() {
                   <a
                     key={tool.name}
                     href={tool.url}
+                    target="_blank"
+                    rel="noopener"
                     className="group block bg-surface-container border border-white/5 p-5 hover:border-[#f2ca50]/30 transition-colors"
                   >
                     <div className="flex items-start justify-between gap-4">
@@ -90,8 +93,8 @@ export default function ArsenalPage() {
                           {tool.desc}
                         </p>
                       </div>
-                      <span className="font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                        →
+                      <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                        <ExternalLink size={14} />
                       </span>
                     </div>
                   </a>
@@ -115,7 +118,8 @@ export default function ArsenalPage() {
             href="mailto:contacto@luisebetancourt.com"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-mono text-xs tracking-[0.2em] uppercase hover:border-[#f2ca50] hover:text-[#f2ca50] transition-colors"
           >
-            PROPOSER HERRAMIENTA
+            <ArrowRight size={14} />
+            PROPONER HERRAMIENTA
           </a>
         </div>
       </section>

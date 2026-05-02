@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "INICIO" },
   { href: "/mision", label: "MISION" },
   { href: "/blog", label: "ARCHIVO" },
+  { href: "/portafolio", label: "PORTAFOLIO" },
   { href: "/arsenal", label: "ARSENAL" },
   { href: "/newsletter", label: "ENLISTARSE" },
   { href: "/sobre", label: "SOBRE" },
@@ -43,12 +45,10 @@ export default function Nav() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen((p) => !p)}
-            className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5 bg-transparent border-none cursor-pointer"
+            className="md:hidden w-8 h-8 flex items-center justify-center bg-transparent border-none cursor-pointer text-white hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
-            <span className="block w-5 h-[1px] bg-white" />
-            <span className="block w-5 h-[1px] bg-white" />
-            <span className="block w-5 h-[1px] bg-white" />
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 

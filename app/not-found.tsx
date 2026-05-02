@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function NotFoundPage() {
   return (
@@ -29,7 +30,7 @@ export default function NotFoundPage() {
           href="/"
           className="inline-flex items-center gap-2 px-6 py-3 bg-[#f2ca50] text-[#131313] font-mono text-xs tracking-[0.2em] uppercase hover:bg-[#ff5540] hover:text-white transition-colors"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+          <ArrowLeft size={14} />
           VOLVER A BASE
         </Link>
       </div>

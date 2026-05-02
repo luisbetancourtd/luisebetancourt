@@ -1,10 +1,17 @@
 "use client";
 
 import TerminalDonation from "./TerminalDonation";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#131313]">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5 }}
+      className="border-t border-white/10 bg-[#131313]"
+    >
       {/* Donacion en footer */}
       <div className="px-6 py-8 border-b border-white/10">
         <div className="max-w-[1400px] mx-auto">
@@ -28,6 +35,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

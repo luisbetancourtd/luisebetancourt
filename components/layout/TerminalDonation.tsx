@@ -1,6 +1,8 @@
+import { Coffee } from "lucide-react";
+
 /**
  * TerminalDonation — Bloque de donacion estilo terminal.
- * Abrid nuevo a ko-fi.com/tuusername en pestana externa.
+ * Abre link a ko-fi.com en pestana externa.
  *
  * @param variant — "compact" (footer) | "full" (pagina)
  */
@@ -9,7 +11,6 @@ interface TerminalDonationProps {
   variant?: "compact" | "full";
 }
 
-// Reemplazar con tu username de Ko-Fi al crear la cuenta
 const KOFI_USERNAME = "luisebetancourt";
 
 export default function TerminalDonation({ variant = "full" }: TerminalDonationProps) {
@@ -39,7 +40,7 @@ export default function TerminalDonation({ variant = "full" }: TerminalDonationP
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-[#f2ca50] text-[#f2ca50] font-mono text-xs tracking-[0.2em] uppercase hover:bg-[#f2ca50] hover:text-[#131313] transition-colors"
       >
-        <span className="text-base">☕</span>
+        <Coffee size={16} />
         {variant === "compact" ? "INVITAR UN CAFE" : "INVITAR UN CAFE — KO-FI"}
       </a>
 

@@ -20,6 +20,7 @@ export interface Page {
   title: string;
   description: string;
   body: string;
+  frontmatter: Record<string, any>;
 }
 
 export interface Sector {
@@ -97,6 +98,7 @@ export function getPages(): Page[] {
       title: data.title || "",
       description: data.description || "",
       body: data.body || "",
+      frontmatter: { ...(data as Record<string, any>), body: undefined } as Record<string, any>,
     };
   });
 }
@@ -112,6 +114,8 @@ export function getPageBySlug(slug: string): Page | null {
     title: data.title || "",
     description: data.description || "",
     body: data.body || "",
+    // Devolver todos los campos del frontmatter sin procesar
+    frontmatter: { ...(data as Record<string, any>), body: undefined } as Record<string, any>,
   };
 }
 
@@ -155,6 +159,72 @@ export function getSectorBySlug(slug: string): Sector | null {
     ctaLabel: data.cta_label || "",
     ctaUrl: data.cta_url || "",
     status: data.status || "ACTIVO",
+    body: data.body || "",
+  };
+}
+
+// ============================================
+// PORTFOLIO
+// ============================================
+
+export interface PortfolioProject {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  techStack: string;
+  link: string;
+  featured: boolean;
+  status: string;
+  date: string;
+  body: string;
+}
+
+export function getPortfolioProjects(): PortfolioProject[] {
+  const portfolioDir = path.join(CONTENT_DIR, "portfolio");
+  if (!fs.existsSync(portfolioDir)) return [];
+
+  const files = fs
+    .readdirSync(portfolioDir)
+    .filter((f) => f.endsWith(".mdx") || f.endsWith(".md"));
+
+  return files
+    .map((file) => {
+      const filePath = path.join(portfolioDir, file);
+      const data = parseFrontmatter(filePath);
+      return {
+        slug: file.replace(/\.mdx?$/, ""),
+        title: data.title || "",
+        description: data.description || "",
+        image: data.image || "",
+        techStack: data.tech_stack || data.techStack || "",
+        link: data.link || "",
+        featured: data.featured === true || data.featured === "true",
+        status: data.status || "draft",
+        date: data.date ? new Date(data.date).toISOString() : "",
+        body: data.body || "",
+      } as PortfolioProject;
+    })
+    .filter((p) => p.status === "published")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getPortfolioProjectBySlug(slug: string): PortfolioProject | null {
+  const portfolioDir = path.join(CONTENT_DIR, "portfolio");
+  const filePath = path.join(portfolioDir, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return null;
+
+  const data = parseFrontmatter(filePath);
+  return {
+    slug,
+    title: data.title || "",
+    description: data.description || "",
+    image: data.image || "",
+    techStack: data.tech_stack || data.techStack || "",
+    link: data.link || "",
+    featured: data.featured === true || data.featured === "true",
+    status: data.status || "draft",
+    date: data.date ? new Date(data.date).toISOString() : "",
     body: data.body || "",
   };
 }

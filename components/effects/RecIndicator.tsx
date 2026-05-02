@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { Radio, X, Clock, MapPin } from "lucide-react";
 
 /**
  * RecIndicator — Indicador REC pulsante fijo en la esquina superior derecha.
@@ -53,11 +54,12 @@ export default function RecIndicator() {
       {/* REC Indicator */}
       <button
         onClick={toggleModal}
-        className="fixed top-12 right-12 z-[101] flex items-center gap-3 font-mono text-xs tracking-[0.1em] text-[#FF0000] cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-none"
+        className="fixed top-12 right-12 z-[101] flex items-center gap-2 font-mono text-xs tracking-[0.1em] text-[#FF0000] cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-none"
         aria-label="Abrir información del sistema"
       >
-        <span
-          className="w-3 h-3 rounded-full bg-[#FF0000]"
+        <Radio
+          size={14}
+          className="text-[#FF0000]"
           style={{ animation: "pulse-red 1.5s infinite" }}
         />
         <span>REC</span>
@@ -80,10 +82,10 @@ export default function RecIndicator() {
               </div>
               <button
                 onClick={toggleModal}
-                className="w-8 h-8 flex items-center justify-center bg-transparent border border-outline text-on-surface hover:bg-secondary hover:border-secondary hover:text-on-secondary transition-none text-xl leading-none cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center bg-transparent border border-outline text-on-surface hover:bg-[#ff5540] hover:border-[#ff5540] hover:text-white transition-colors cursor-pointer"
                 aria-label="Cerrar modal"
               >
-                ×
+                <X size={16} />
               </button>
             </div>
 
@@ -102,7 +104,8 @@ export default function RecIndicator() {
                 </div>
 
                 <div className="bg-surface-container-low border border-white/5 p-4">
-                  <div className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-on-surface-variant mb-2">
+                  <div className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
+                    <MapPin size={10} />
                     Location
                   </div>
                   <div className="text-sm text-primary">Sofia, Bulgaria</div>
@@ -116,7 +119,8 @@ export default function RecIndicator() {
                 </div>
 
                 <div className="bg-surface-container-low border border-white/5 p-4">
-                  <div className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-on-surface-variant mb-2">
+                  <div className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
+                    <Clock size={10} />
                     Server Time
                   </div>
                   <div className="text-sm text-primary font-mono">{timestamp}</div>
